@@ -1,0 +1,3 @@
+My Trade Coin Contract
+
+Documentation coming soon...
