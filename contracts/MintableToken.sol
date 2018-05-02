@@ -9,6 +9,8 @@ contract MintableToken is StandardToken, Ownable {
   
   event MintFinished();
 
+  event SaleAgentUpdated(address currentSaleAgent);
+
   bool public mintingFinished = false;
 
   address public saleAgent;
@@ -21,11 +23,12 @@ contract MintableToken is StandardToken, Ownable {
   function setSaleAgent(address newSaleAgnet) public {
     require(msg.sender == saleAgent || msg.sender == owner);
     saleAgent = newSaleAgnet;
+    SaleAgentUpdated(saleAgent);
   }
 
   function mint(address _to, uint256 _amount) public returns (bool) {
     require(msg.sender == saleAgent && !mintingFinished);
-    totalSupply_ = totalSupply_.add(_amount);
+    totalSupply = totalSupply.add(_amount);
     balances[_to] = balances[_to].add(_amount);
     Mint(_to, _amount);
     return true;

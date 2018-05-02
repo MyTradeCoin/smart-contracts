@@ -12,7 +12,7 @@ module.exports = {
       network_id: "3" ,  // ROPSTEN
       // Options - gas, gasPrice, from
       from: "0x3a75ad8d08b388ca0f2afafb3c092aaf40ae72a6",
-      gas: 4600000
+      gas: 4800000
     },
 
     PRODUCTION: {
