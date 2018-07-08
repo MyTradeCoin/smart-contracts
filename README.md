@@ -4,6 +4,22 @@
 
 MYTC Network is designed to unite small medium enterprises globally to enjoy the ability to conduct reciprocal trade/barter with each other
 
+# Installation
+* Clone our repository 
+* Run npm install
+* Truffle compile
+
+To run our unit tests:
+
+* Run Ganache (or any other RPC client)
+* Run truffle test
+
+Important: Make sure you have the latest updates for node and truffle to run the async tests
+Versions used:
+Node version 8.11.2
+Truffle version 4.1.12
+npm version 5.6.0
+
 # Contract Information
 
 * Name: MYTC
@@ -11,10 +27,10 @@ MYTC Network is designed to unite small medium enterprises globally to enjoy the
 * Standard: ERC20
 * Decimals: 18
 
-## Instructions
+## Investor instructions
 
 1. Get an ERC20 compatible wallet. DO NOT use your exchange wallet.
-2. Register for our sale in our website: http://mytradecoin.io/
+2. Register for our sale in our website: http://mytradetoken.io
 3. Accept our terms of sale agreement and whitepaper terms
 4. Send your investment in ETH to the contract address provided after your identity has been checked
 5. We recommend you use GAS 280000, Wei 50
@@ -169,5 +185,5 @@ https://ropsten.etherscan.io/tx/0xb18b1b5c4db013f5e0961cc09dc4a6770fe4a4ba987b5a
  
 # Contact
 
-Please visit our website, http://mytradecoin.io/ for more information on the project
+Please visit our website, http://mytradetoken.io/ for more information on the project
 © 2018 MYTC Pty Ltd. All Rights Reserved.
