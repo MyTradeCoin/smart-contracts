@@ -1,8 +1,8 @@
 pragma solidity ^0.4.18;
 
-import "./CommonSale.sol";
+import "./WhiteListToken.sol";
 
-contract Tge is CommonSale {
+contract Tge is WhiteListToken {
 
   //Team wallet address
   address public teamTokensWallet;
@@ -24,6 +24,9 @@ contract Tge is CommonSale {
   
   //Lock period in days for team's wallet
   uint public lockPeriod;  
+
+  //maximum amount of tokens ever minted
+  uint public totalTokenSupply;
 
   /**
       * event for TGE finalization logging
@@ -63,6 +66,14 @@ contract Tge is CommonSale {
   function setReservedTokensPercent(uint newReservedTokensPercent) public onlyOwner {
     reservedTokensPercent = newReservedTokensPercent;
   }
+  
+  /**
+    * sets max number of tokens to ever mint
+    * @param newTotalTokenSupply max number of tokens (incl. 18 dec points)
+    */
+  function setTotalTokenSupply(uint newTotalTokenSupply) public onlyOwner {
+    totalTokenSupply = newTotalTokenSupply;
+  }
 
   /**
     * sets address for team's wallet
@@ -93,18 +104,30 @@ contract Tge is CommonSale {
     * No further tokens will be minted ever
     */
   function endSale() public whenNotPaused saleIsFinished onlyOwner {    
-    uint remainingPercentage = bountyTokensPercent.add(teamTokensPercent).add(reservedTokensPercent);
-    uint tokensGenerated = token.totalSupply();
-    uint totalTokenSupply = tokensGenerated.mul(percentRate).div(percentRate.sub(remainingPercentage));
+    // uint remainingPercentage = bountyTokensPercent.add(teamTokensPercent).add(reservedTokensPercent);
+    // uint tokensGenerated = token.totalSupply();
+
     uint foundersTokens = totalTokenSupply.mul(teamTokensPercent).div(percentRate);
     uint reservedTokens = totalTokenSupply.mul(reservedTokensPercent).div(percentRate);
     uint bountyTokens = totalTokenSupply.mul(bountyTokensPercent).div(percentRate); 
     mintTokens(reservedTokensWallet, reservedTokens);
     mintTokens(teamTokensWallet, foundersTokens);
-    mintTokens(bountyTokensWallet, bountyTokens);   
+    mintTokens(bountyTokensWallet, bountyTokens); 
+    uint currentSupply = token.totalSupply();
+    if (currentSupply < totalTokenSupply) {
+      // send remaining tokens to reserved wallet
+      mintTokens(reservedTokensWallet, totalTokenSupply.sub(currentSupply));
+    }  
     token.lock(teamTokensWallet, lockPeriod);      
     token.finishMinting();
     TgeFinalized(msg.sender, now);
   }
 
+    /**
+    * Payable function
+    */
+  function() external onlyIfWhitelisted payable {
+    require(now >= start && now < lastSaleDate());
+    createTokens();
+  }
 }
