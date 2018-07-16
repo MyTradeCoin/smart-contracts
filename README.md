@@ -47,25 +47,25 @@ npm version 5.6.0
 Integration testing has been done using Ropsten Network
 
 ## Contracts
-Token: https://ropsten.etherscan.io/token/0x5De65F0BDE35B49e877d6dDD39b2dBFc3d252ec8
-TGE: https://ropsten.etherscan.io/address/0x2A6Ec010371FFE0dD1cda0399C16Ea67e37fA2f0
-PreTGE: https://ropsten.etherscan.io/address/0x51d585756EC397221dA5Fe822E9b294DD8173eB9
+Token: https://ropsten.etherscan.io/token/0x12867277532e64c22bcc4c8fceb1c1719443d0f2
+TGE: https://ropsten.etherscan.io/address/0x331A2B8DFeC57D9B805FAF2f6c37A21dFc00A69f
+PreTGE: https://ropsten.etherscan.io/address/0x95fa54f46C2A8b740f4D1e59D6233467B5317291
 
 ## Wallets
 Master:
-0x9767e590113FE8Db09d75b483D85529971D5f4EE
+0xF5F8CeF2CACA5A2B45e582951a3A5D7CE50D87D9
 
 Slave:
-0x63EaF07A017742c47D90d08B00552d4D03541F3F
+0x999f4E4a7025bAa06fbaE50cB648751305BB8DB8
 
 Bounty and Advisors:
-0xb283C324333fB8473f20856EfD40Fe1129aF3B70
+0xeB2544d37BBA671f767b75e294DE28490ead5E19
 
 Team:
-0x2150C0a297f5a7456FdD618586Db51F6Da75f833
+0x4Bc43B0017702B11a4E6F7Dd545723E528254169
 
 Reserved:
-0xa8975045141D1E4cEBbA8DF4061b7d738F01DF5e
+0x880559F5cFf478b5F4bb74E4371aE73e75ecc0D7
 
 ## PreTge
 
@@ -81,22 +81,22 @@ Minimun Investment: 0.1 ETH
 #### Purchase coins after the sale begins:
 Expected result: It should succeed and return expected coins
 Actual result: Transaction completed. Received 3000 MYTC for 1 ETH. Funds received
-https://ropsten.etherscan.io/tx/0xbd46eca9956cd42b92d8fa1eb5908b5174aa543e0829aa1a3ef091e77b6213d2
+https://ropsten.etherscan.io/tx/0xac2e9c754c65e7c14fb8189c30e14a7a618efee1f75f37259f19f5c50099f29e
 
 #### Purchase coins with less than minimun amount(< 0.1 ETH):
 Expected result: It should fail
 Actual result: Transaction failed sending 0.05 as investement
-https://ropsten.etherscan.io/tx/0xbe3d369369c92a994c1a80f1213df94e0cc81632007fa2a1993800d52977db1f
+https://ropsten.etherscan.io/tx/0x12c14651f0adabdc84d1d6f9a603b4113871b0aa9616e22983482ef54c208bd4
 
 #### Close sale before softcap is reached:
 Expected result: It should fail
 Actual result: Transaction Failed. Softcap must be reached to consider a sale successful
-https://ropsten.etherscan.io/tx/0xce569a3dea490360e7b078b6976dd068be6adb6ee358a27d4483c74c3534e842
+https://ropsten.etherscan.io/tx/0x12c14651f0adabdc84d1d6f9a603b4113871b0aa9616e22983482ef54c208bd4
 
 #### Close sale before hardcap but after softcap is reached:
 Expected result: It should succeed and set TGE as next sale
 Actual result: Transaction completed. Sale agent updated
-https://ropsten.etherscan.io/tx/0x097727bce071442de8f520b87962b5ff2d29fb744ae1d57c8897e33266ea6311
+https://ropsten.etherscan.io/tx/0x39a4f12869ef4546f75337e87263dd73a1c11c3c70c7b9abe48f3ceb39be18e6
 
 ## Tge
 
@@ -112,78 +112,88 @@ Duration: 3 days
 Minimun Investment: 0.1 ETH
 Team's wallet lock period: 15 days
 
-#### Purchase coins after the sale begins during Milestone A:
+#### Purchase coins before the sale begins:
+Expected result: It should fail
+Actual result: Transaction rejected
+https://ropsten.etherscan.io/tx/0x46fd2ae67c0c1a939728ac6670127abb4dc6dae69e5bdc413ab857809e68a45b
+
+#### Purchase coins from an address NOT in the whitelist:
+Expected result: It should fail
+Actual result: Transaction rejected
+https://ropsten.etherscan.io/tx/0x2af2d38bd0bddee6f97aff6f465fe26fedd92988d97fff82f78e784450d2841d
+
+#### Add address to whitelist after KYC process:
+Expected result: It should succeed and register address
+Actual result: Transaction completed. Address added
+https://ropsten.etherscan.io/tx/0xbff4e9a24ae1a4b8e3c219a9be9721954a8d4fb087c68f8a3959627e4fa08d8e
+
+#### Purchase coins after the sale begins during Milestone A, after KYC process:
 Expected result: It should succeed and return expected coins
-Actual result: Transaction completed. Received 2000 MYTC for 1 ETH. Funds received
-https://ropsten.etherscan.io/tx/0xd1338498961bc14f58cf365f31fa03142f59a828ca14e683948611dcb79c086e
+Actual result: Transaction completed. Received 2000 MYTC for each 1 ETH. Funds received
+https://ropsten.etherscan.io/tx/0x656a50f91c73b414e2430ddb80b7fad7bf5e23486edb308927bd2d14b6370ceb
 
 #### Purchase coins after the sale begins during Milestone B:
 Expected result: It should succeed and return expected coins
-Actual result: Transaction completed. Received 1000 MYTC for 1 ETH. Funds received
-https://ropsten.etherscan.io/tx/0xa93abf0cc0b08f27abf28d4a2c27a3632cdf431009616a2d31ee3a9395aa3021
+Actual result: Transaction completed. Received 1000 MYTC for each 1 ETH. Funds received
+https://ropsten.etherscan.io/tx/0x8f3d792b264ae8c9a45f8f8ab1917af9dc03a40b437b2a889d01814480b8a7db
 
 #### Purchase coins with less than minimun amount(< 0.1 ETH):
 Expected result: It should fail
 Actual result: Transaction failed sending 0.05 as investement
-https://ropsten.etherscan.io/tx/0xe0d0392f4cb8fe185d678befa045f51b4907d988d4edbf9d470523e48d393ae4
+https://ropsten.etherscan.io/tx/0x5a7a9088ac617c318f69eb1283f5b5401b97e1d287d1ec9e9885c356446d3f9e
 
 #### Pause sale:
 Expected result: It should pause the sale
 Actual result: Transaction completed. Sale has been paused
-https://ropsten.etherscan.io/tx/0x45f068984aeb5a433763cb64c0d157289d4e88759506a1310b625d174183e53a
+https://ropsten.etherscan.io/tx/0x7325d675a7d0cd8fe9df57dbe30013308d929624fdb1f7063dd868472371cae7
 
 #### Invest while sale is paused:
 Expected result: It should fail
 Actual result: Transaction failed. Can't invest while paused
-https://ropsten.etherscan.io/tx/0x85b79a91427e65528996bc27df6105d3a169796cf93bfb4b988ff319d83f8eaf
+https://ropsten.etherscan.io/tx/0x7abd7c7b46b2d182f196b05c1663e4087b727876657f1c26d8f25e763cde5ef3
 
 #### Resume sale:
 Expected result: It should unpause the sale
 Actual result: Transaction completed. Sale has been restored
-https://ropsten.etherscan.io/tx/0x0b5e068b2bacbb3a5ac5db1db26d09c2f2d471c7f5647318e8b115d781747a89
+https://ropsten.etherscan.io/tx/0x54d9bfd2ec63b81a9c80870bf54a3bd820f0af859e725165f8208cf6f425f4dc
 
 #### Purchase coins after resued sale during Milestone B:
 Expected result: It should succeed and return expected coins
-Actual result: Transaction completed. Received 1000 MYTC for 1 ETH. Funds received
-https://ropsten.etherscan.io/tx/0x0fda05814f24079cfa7c32577f1ce11514ada537a3d0721378a09cb89b3a0c0d
+Actual result: Transaction completed. Received 1000 MYTC for each 1 ETH. Funds received
+https://ropsten.etherscan.io/tx/0x18534d5781a6758bcf58630da909a3f7f3835579ce682a69dbcbea918dab27dc
 
 #### Invest after hardcap has been reached:
 Expected result: It should fail
 Actual result: Transaction failed. Can't mint more tokens than specified hardcap
-https://ropsten.etherscan.io/tx/0xd23f264ed5999dfa16760eb466abdd1855b70bc7a2151f7db55558ff497533c0
+https://ropsten.etherscan.io/tx/0x100f13bdeeeca0e4ef813e90c1374022bf95818a516d4c323661cf1fe4573e60
 
 #### Finish sale after hardcap has been reached:
 Expected result: It should succeed and finish minting
 Actual result: Transaction completed. Sale closed, miniting has been finished and funds transfered to team, bounty and reserved wallet
-https://ropsten.etherscan.io/tx/0x9be73ba2373bf248aecbd2780cb39f9be4cf5bbcc1a6c3d0def874746db13ffc
+https://ropsten.etherscan.io/tx/0x8a999c8f6ecc50dd2227a132548ab526434fef783d53375acb4bbd84f6f661ee
 
-##### Tokens Generated
-
-Total coins minted in PreTGE: 3.1 ETH = 9300 MYTC
-Total coins minted in TGE: 7 ETH = 9000 MYTC
-Total for sales: 18300 MYTC
 
 ##### Token distribution
 
 MYTC Balances:
-https://ropsten.etherscan.io/token/0x5de65f0bde35b49e877d6ddd39b2dbfc3d252ec8#balances
+https://ropsten.etherscan.io/token/0x12867277532e64c22bcc4c8fceb1c1719443d0f2#balances
 
-Bounty (5%): 
-0xb283C324333fB8473f20856EfD40Fe1129aF3B70
+Bounty (3%): 
+0xeb2544d37bba671f767b75e294de28490ead5e19
 
 Team (18%):
-0x2150C0a297f5a7456FdD618586Db51F6Da75f833
+0x4bc43b0017702b11a4e6f7dd545723e528254169
 
-Reserved (25%):
-0xa8975045141D1E4cEBbA8DF4061b7d738F01DF5e
+Reserved (58%):
+0x880559f5cff478b5f4bb74e4371ae73e75ecc0d7
 
 #### Transfer tokens from team's wallet after sale is finished:
 Expected result: It should fail
 Actual result: Transaction failed. Wallet is locked and can't transfer tokens until the lock period is met
-https://ropsten.etherscan.io/tx/0xb18b1b5c4db013f5e0961cc09dc4a6770fe4a4ba987b5a49834b7f4d8f8a2622
+https://ropsten.etherscan.io/tx/0x167ee0183e5fd8f95ab4dda3c35f2d095d34732a9627e16a97813258d3f36cbb
 
  
 # Contact
 
-Please visit our website, http://mytradetoken.io/ for more information on the project
+Please visit our website, http://mytradetoken.io for more information on the project
 © 2018 MYTC Pty Ltd. All Rights Reserved.
