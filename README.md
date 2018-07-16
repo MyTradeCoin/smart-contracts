@@ -47,9 +47,9 @@ npm version 5.6.0
 Integration testing has been done using Ropsten Network
 
 ## Contracts
-Token: https://ropsten.etherscan.io/token/0x12867277532e64c22bcc4c8fceb1c1719443d0f2
-TGE: https://ropsten.etherscan.io/address/0x331A2B8DFeC57D9B805FAF2f6c37A21dFc00A69f
-PreTGE: https://ropsten.etherscan.io/address/0x95fa54f46C2A8b740f4D1e59D6233467B5317291
+* Token: https://ropsten.etherscan.io/token/0x12867277532e64c22bcc4c8fceb1c1719443d0f2
+* TGE: https://ropsten.etherscan.io/address/0x331A2B8DFeC57D9B805FAF2f6c37A21dFc00A69f
+* PreTGE: https://ropsten.etherscan.io/address/0x95fa54f46C2A8b740f4D1e59D6233467B5317291
 
 ## Wallets
 Master:
